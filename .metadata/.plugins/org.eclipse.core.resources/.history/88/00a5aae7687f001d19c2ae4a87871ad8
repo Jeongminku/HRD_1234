@@ -1,0 +1,7 @@
+function fn_submit(){
+	var fn = document.frm; //add.jsp 이름이 frm
+	
+	if (fn.custname.value == "") { //input창에 입력된 값을 가져오는 방법 ~.name.value
+		alert("회원성명이 입력되지 않았습니다.");
+		fn.custname.focus
+}

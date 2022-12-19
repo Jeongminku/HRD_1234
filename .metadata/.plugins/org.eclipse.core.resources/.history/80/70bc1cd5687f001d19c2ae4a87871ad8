@@ -1,0 +1,5 @@
+function fn_submit(){
+	var fn = document.frm; //add.jsp 이름이 frm
+	
+	if (fn.custno.value == "")
+}
