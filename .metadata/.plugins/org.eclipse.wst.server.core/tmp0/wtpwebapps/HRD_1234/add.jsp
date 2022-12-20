@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>   
+<% request.setCharacterEncoding("UTF-8");
+int custno = 0;
+custno = (Integer)request.getAttribute("custno");
+%>         
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +22,7 @@
 				<table>
 					<tr>
 						<th>회원번호(자동발생)</th>
-						<td><input name="custno"></td>
+						<td><input name="custno" value="<%=custno%>" readonly></td>
 					</tr>
 					<tr>
 						<th>회원성명</th>
@@ -48,7 +52,7 @@
 						<td colspan="2">
 						<button class="btn" type="submit" onclick="fn_submit(); return false;">등 록</button>
 						<!-- onclick에서 return false가 있을 경우 href로 이동하는 액션을 취하지 않게됩니다. -->
-						<button class="btn" type="submit">조 회</button>
+						<button class="btn" type="button" onclick="location='list'">조 회</button>
 						</td>
 					</tr>
 					

@@ -1,0 +1,59 @@
+package controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import DAO.MemberDAO;
+
+@WebServlet("/")
+public class MemberController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+
+    public MemberController() {
+        super();
+    }
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPro(request,response);
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		doPro(request,response);
+	}
+
+	protected void doPro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String context = request.getContextPath(); //Context = 톰캣에서 생성되는녀석. 톰캣의 context path를 가져옵니다.
+												   //Servers>Tomcat v9.0> server.xml의 156번째 가면 확인 가능.
+		String command = request.getServletPath();
+		String site = null;
+		
+		System.out.println(context + ", " + command);
+		
+		MemberDAO member = new MemberDAO();
+		
+		switch (command) {
+		case "/home":
+			site = "index.jsp";
+			break;
+		case "/insert":
+			site = member.insert(request, response);
+			break;
+		case "/list":
+			site = member.selectAll(request, response);
+			break;
+		case "/add":
+			site = member.nextCustno(request, response);
+			break;
+		}
+		
+		getServletContext().getRequestDispatcher("/" + site).forward(request, response);
+	}
+}

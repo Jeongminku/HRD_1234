@@ -1,14 +1,11 @@
 package DAO;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import DTO.Member;
 
 public class MemberDAO {
@@ -19,11 +16,11 @@ public class MemberDAO {
 	//DB와 연결하는 메소드입니다.
 	public static Connection getConnection() throws Exception{
 		Class.forName("oracle.jdbc.OracleDriver");
-		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1524:xe", "system", "sys1234");
+		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "sys1234");
 		return con;
 	}
 	
-	//insert
+	//insert 회원등록
 	public String insert(HttpServletRequest request, HttpServletResponse response) {
 		int custno = Integer.parseInt(request.getParameter("custno"));
 		String custname = request.getParameter("custname");
@@ -48,7 +45,7 @@ public class MemberDAO {
 			pstmt.setString(6, grade);
 			pstmt.setString(7, city);
 			
-			//insert, update, delete: 성공한 레코드의 개수를 반환합니다.
+			//insert, update, delete: 성공한 레코드의 개수를 반환합니다. insert,update,delete는 executeUpdate로 실행합니다.
 			result = pstmt.executeUpdate(); // 수행결과로 Int 타입의 값을 반환합니다.  INSERT / DELETE / UPDATE 관련 구문에서는 반영된 레코드의 건수를 반환합니다.
 			
 			System.out.println(result);
@@ -61,6 +58,35 @@ public class MemberDAO {
 		} 
 			return "add";			
 	}
+	
+	//회원번호 자동증가
+	public String nextCustno(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			conn = getConnection();
+			String sql = "select max(custno)+1 custno from member_tbl_02";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			int custno = 0;
+			
+			if(rs.next()) custno = rs.getInt(1);
+			
+			System.out.println(custno);
+			
+			request.setAttribute("custno", custno);
+			
+			conn.close();
+			pstmt.close();
+			rs.close();
+			
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+		return "add.jsp";
+	}
+	
+	
 	//회원목록 조회, 수정파트
 	public String selectAll(HttpServletRequest request, HttpServletResponse response) { 
 			ArrayList<Member> list = new ArrayList<Member>(); //Member 엔티티클래스(DTO)를 담는 역할.
@@ -70,7 +96,7 @@ public class MemberDAO {
 				//쿼리문으로 해결할 수 있는것은 엔간해선 전부 뒷단(쿼리문)에서 해결해야합니다.  ex) if문을 써서 A -> VIP 이렇게 하면 안되고 뒷단에서 해야한다는 것입니다.
 				//DECODE 를 사용해 봅시다  A = VIP 이런식으로 씀.  오라클할때 배웠다는데요?
 				String sql = "select custno, custname, phone, address, TO_CHAR(joindate, 'YYYY-MM-DD') joindate,";
-				sql+= "DECODE(grade, 'A', 'VIP', 'B', '일반', '직원') grade, city from member_tbl_02, order by custno asc"; //DECODE(컬럼명, 'N1값', '다시표현할 N1값', 'N2라면', '일반N2', '나머지는 이렇게')
+				sql+= "DECODE(grade, 'A', 'VIP', 'B', '일반', '직원') grade, city from member_tbl_02 order by custno"; //DECODE(컬럼명, 'N1값', '다시표현할 N1값', 'N2라면', '일반N2', '나머지는 이렇게')
 				
 				pstmt = conn.prepareStatement(sql);
 				rs = pstmt.executeQuery();
@@ -102,4 +128,77 @@ public class MemberDAO {
 			return "list.jsp";
 	}
 	
+	//회원정보수정 화면띄우기
+	public String modify(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			conn = getConnection();
+			int custno = Integer.parseInt(request.getParameter("custno")); //수정할 회원 정보를 가져옴.
+			
+			String sql = "select custname, phone, address, TO_CHAR(joindate, 'YYYY-MM-DD') joindate, grade, city from member_tbl_02 where custno =" + custno;
+					
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			Member member = new Member();
+			
+			if(rs.next()) {
+				member.setCustno(custno);
+				member.setCustname(rs.getString(1));
+				member.setPhone(rs.getString(2));
+				member.setAddress(rs.getString(3));
+				member.setJoindate(rs.getString(4));
+				member.setGrade(rs.getString(5));
+				member.setCity(rs.getString(6));
+			}
+			
+			request.setAttribute("member", member);
+			request.setAttribute("custno", custno);
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		return "modify.jsp";
+	}
+	
+	//회원정보 수정 버튼 눌러서 업데이트
+	public int update(HttpServletRequest request, HttpServletResponse response) {
+		int custno = Integer.parseInt(request.getParameter("custno"));
+		String custname = request.getParameter("custname");
+		String phone = request.getParameter("phone");
+		String address = request.getParameter("address");
+		String joindate = request.getParameter("joindate");
+		String grade = request.getParameter("grade");
+		String city = request.getParameter("city");
+		int result = 0;
+		
+		try {
+			conn = getConnection();
+			
+			String sql = "update member_tbl_02 set custname = ?, phone = ?, address = ?, joindate = to_date(?, 'YYYY-MM-DD'), grade = ?, city = ? where custno = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, custname);
+			pstmt.setString(2, phone);
+			pstmt.setString(3, address);
+			pstmt.setString(4, joindate);
+			pstmt.setString(5, grade);
+			pstmt.setString(6, city);
+			pstmt.setInt(7, custno); //setInt(x번째물음표에, 넣을데이터)
+			
+			//insert, update, delete: 성공한 레코드의 개수를 반환합니다. insert,update,delete는 executeUpdate로 실행합니다.
+			result = pstmt.executeUpdate(); //update가 성공했다면 숫자 1을 반환합니다 (성공한 레코드의 수를 반환함)(1개했으니까(?))
+			
+			conn.close();
+			pstmt.close();
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+		
+	}
 }
