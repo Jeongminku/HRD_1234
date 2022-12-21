@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import DTO.Member;
+import DTO.Money;
 
 public class MemberDAO {
 	Connection conn = null; //db와의 connection
@@ -77,7 +78,7 @@ public class MemberDAO {
 			
 			conn.close();
 			pstmt.close();
-			rs.close();
+			rs.close(); //rs = resultSet 결과 담는 부분
 			
 		} catch (Exception e) {
 
@@ -127,6 +128,43 @@ public class MemberDAO {
 			
 			return "list.jsp";
 	}
+	
+	public String selectResult(HttpServletRequest request, HttpServletResponse response) {
+		ArrayList<Money> list = new ArrayList<Money>(); //Money 엔티티클래스(DTO)를 담는 역할.
+		try {
+			conn = getConnection();
+			String sql = "select m1.custno, m1.custname, DECODE(grade, 'A', 'VIP', 'B', '일반', '직원') grade, sum(m2.price) price"
+					+ " from member_tbl_02 m1, money_tbl_02 m2"
+					+ " where m1.custno = m2.custno"
+					+ " group by (m1.custno, m1.custname, grade)"
+					+ " order by price desc";
+			
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Money money = new Money();
+				
+				money.setCustno(rs.getInt(1));
+				money.setCustname(rs.getString(2));
+				money.setGrade(rs.getString(3));
+				money.setPrice(rs.getInt(4));
+				
+				list.add(money);
+			}
+			request.setAttribute("list", list);
+			
+			conn.close();
+			pstmt.close();
+			rs.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			
+		return "result.jsp";	
+	}
+	
+	
 	
 	//회원정보수정 화면띄우기
 	public String modify(HttpServletRequest request, HttpServletResponse response) {
@@ -201,4 +239,29 @@ public class MemberDAO {
 		return result;
 		
 	}
+	//회원정보 삭제
+	public int delete(HttpServletRequest request, HttpServletResponse response) {
+		int result = 0;
+		try {
+			conn = getConnection();
+			String custno = request.getParameter("custno"); //회원번호를 기반으로 삭제할 녀석을 고르기 때문에 받아옴.
+			String sql = "delete from member_tbl_02 where custno=" + custno;
+			
+			pstmt = conn.prepareStatement(sql);//위에서 적은 쿼리문을 입력(준비).
+			result = pstmt.executeUpdate();//쿼리문 실행
+			
+			conn.close();
+			pstmt.close();
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		return result;
+		
+	}
+	
+	
+	
 }

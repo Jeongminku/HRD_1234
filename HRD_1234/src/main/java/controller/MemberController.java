@@ -37,7 +37,6 @@ public class MemberController extends HttpServlet {
 												   //톰캣의 context Path를 가져온다. (server.xml 156행의 path="/HRD_1234")
 		String command = request.getServletPath(); //파일명만 가져온다(인터넷 주소 경로의 마지막 파일명을 가져옴)
 		String site = null;
-		System.out.println(request.getRequestURI());
 		System.out.println(context + ", " + command);
 		
 		MemberDAO member = new MemberDAO();
@@ -58,6 +57,9 @@ public class MemberController extends HttpServlet {
 		case "/modify":
 			site = member.modify(request, response);
 			break;
+		case "/result":
+			site = member.selectResult(request,response);
+			break;
 		case "/update":
 			int result1 = member.update(request, response);
 			response.setContentType("text/html; charset=UTF-8");
@@ -71,6 +73,24 @@ public class MemberController extends HttpServlet {
 			} else {
 				out.print("<script>");   				  //location.href= '/HRD_1234';
 				out.print("alert('수정실패!!'); location.href='" + context + "';");
+				out.print("</script>");
+				out.flush();
+			}
+			break;
+			
+		case "/delete":
+			int result2 = member.delete(request, response);
+			response.setContentType("text/html; charset=UTF-8");
+			out = response.getWriter();
+			
+			if(result2 == 1) {//업데이트 성공
+				out.print("<script>");   				  //location.href= '/HRD_1234';
+				out.print("alert('회원정보가 삭제되었습니다!'); location.href='" + context + "';");
+				out.print("</script>");
+				out.flush();
+			} else {
+				out.print("<script>");   				  //location.href= '/HRD_1234';
+				out.print("alert('삭제실패!!'); location.href='" + context + "';");
 				out.print("</script>");
 				out.flush();
 			}
