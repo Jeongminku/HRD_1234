@@ -19,7 +19,7 @@ list = (ArrayList<Member>)request.getAttribute("list");
 	<section>
 		<div class="title">후보조회</div>
 		<div class="wrapper">
-			<table border="1", style="width: 900px">
+			<table border="1" style="width: 900px">
 				<tr>
 					<th>후보번호</th>
 					<th>성명</th>

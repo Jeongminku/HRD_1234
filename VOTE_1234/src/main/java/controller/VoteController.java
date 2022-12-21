@@ -45,9 +45,24 @@ public class VoteController extends HttpServlet {
 			view = vote.search(request, response);
 			break;
 		case "/vote":
-			view = 
+				int result = vote.insertVote(request, response);
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				if (result == 1) {
+					out.println("<script>");
+					out.println("alert('투표하기 정보가 정상적으로 등록 되었습니다!); location.href= '" + context + "'; ");
+					out.println("</script>");
+					out.flush(); //안쓰면 스택 오버플로우
+				} else {
+					out.println("<script>");
+					out.println("alert('등록 실패!); location.href= '"+ context +"'; ");
+					out.println("</script>");
+					out.flush();
+				}
+				break;
+		case "/voteGo":
+			view = "vote.jsp";
 			break;
-	
 		}
 		getServletContext().getRequestDispatcher("/"+view).forward(request, response);
 	}

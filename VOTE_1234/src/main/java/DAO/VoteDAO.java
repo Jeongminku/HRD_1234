@@ -68,6 +68,40 @@ public class VoteDAO {
 		
 		return "search.jsp";
 	}
+	
+	public int insertVote(HttpServletRequest request, HttpServletResponse response) {
+		
+		int result = 0;
+		try {
+			conn = getConnection();
+			//request.getParameter(String name)
+			String v_jumin = request.getParameter("v_jumin");
+			String v_name = request.getParameter("v_name");
+			String m_no = request.getParameter("m_no");
+			String v_time = request.getParameter("v_time");
+			String v_area = request.getParameter("v_area");
+			String v_confirm = request.getParameter("v_confirm");
+			
+			String sql = "INSERT INTO TBL_VOTE_202005 VALUES(?,?,?,?,?,?)";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, v_jumin);
+			ps.setString(2, v_name);
+			ps.setString(3, m_no);
+			ps.setString(4, v_time);
+			ps.setString(5, v_area);
+			ps.setString(6, v_confirm);
+			
+			result = ps.executeUpdate();
+			conn.close();
+			ps.close();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 }
 
 
