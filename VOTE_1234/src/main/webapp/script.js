@@ -28,6 +28,7 @@ function fn_submit(){
 	}
 	if (fn.v_confirm.value == "") {
 		alert("유권자확인이 선택되지 않았습니다!")
+		fn.v_confirm.focus();
 		return false; //함수 종료.
 	}
 	
