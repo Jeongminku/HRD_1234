@@ -47,14 +47,14 @@
 					<tr>
 						<th>유권자확인</th>
 						<td>
-							<input type="radio" name=v_confirm value="Y">확인
-							<input type="radio" name=v_confirm value="N">미확인
+							<input style="float: none;" type="radio" name=v_confirm value="Y">확인
+							<input style="float: none;" type="radio" name=v_confirm value="N" style="float: none;">미확인
 						</td>
 					</tr>
 					<tr>
 						<td colspan="2" style="text-align: center">
 						<button class="btn" type="submit" onclick="fn_submit(); return false;">투표하기</button>
-						<button class="btn" type="button" onclick="fn_reset();">다시하기</button>
+						<button class="btn" type="reset" onclick="fn_reset();">다시하기</button>
 						</td>
 					</tr>				
 				</table>

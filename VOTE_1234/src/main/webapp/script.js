@@ -35,7 +35,8 @@ function fn_submit(){
 }
 
 function fn_reset(){
+	var fn = document.frm;
 	alert("정보를 지우고 처음부터 다시 입력합니다!");
-	location = "voteGo";
-	document.frm.v_juimin.focus();
+	fn.v_jumin.focus();
+	return false;
 }

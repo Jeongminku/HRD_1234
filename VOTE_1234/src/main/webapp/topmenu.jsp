@@ -12,8 +12,8 @@
 		<ul>
 			<li><a href="search">후보조회</a></li>
 			<li><a href="voteGo">투표하기</a></li>
-			<li><a href="check">투표검수조회</a></li>
-			<li><a href="ranking">후보자등수</a></li>
+			<li><a href="listcheck">투표검수조회</a></li>
+			<li><a href="rankinglist">후보자등수</a></li>
 			<li><a href="home">홈으로</a></li>			
 		</ul>
 	</nav>

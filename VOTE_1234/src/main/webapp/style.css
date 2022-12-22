@@ -54,6 +54,20 @@ section h2 {
 	text-align: center;
 }
 
+.title {
+	font-size: 30px;
+	font-weight: 900;
+	text-align: center;
+	margin: 3rem;
+}
+
+.wrapper {
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
 footer {
 	position: fixed;
 	bottom: 0;
@@ -66,5 +80,23 @@ footer {
 }
 
 table {
+	width: 500px;
 	margin: 0 auto;
+}
+
+table td {
+	text-align: center;
+}
+
+td input, select {
+	float: left;
+	padding: 0.3rem;
+}
+
+.btn {
+	padding: 0.3rem;
+}
+
+.btn:hover {
+	cursor: pointer;
 }
