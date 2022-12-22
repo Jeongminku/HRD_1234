@@ -7,11 +7,14 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\hrdkorea\Servers"/>
+			<item value="C:\hrdkorea\VOTE_1234"/>
+			<item value="C:\hrdkorea\HRD_5678"/>
+			<item value="C:\hrdkorea\HRD_1234"/>
 			<item value="C:\HRD_1234\VOTE_1234"/>
 			<item value="C:\HRD_1234\HRD_5678"/>
 			<item value="C:\HRD_1234\Servers"/>
 			<item value="C:\HRD_1234\HRD_1234"/>
-			<item value="C:\hrdkorea\Servers"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
 			<item value=""/>

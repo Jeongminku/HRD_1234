@@ -8,6 +8,7 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="l"/>
 			<item value="update"/>
 			<item value="on"/>
 			<item value="fn"/>
@@ -22,7 +23,6 @@
 			<item value="sql+="/>
 			<item value="getAtt"/>
 			<item value="javax.servlet.http.HttpServletRequest.getAttribute(String)&quot; is null"/>
-			<item value="custno"/>
 		</list>
 		<list key="replacehistory">
 			<item value="UTF"/>
