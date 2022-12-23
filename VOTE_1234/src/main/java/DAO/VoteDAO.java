@@ -77,6 +77,7 @@ public class VoteDAO {
 		try {
 			conn = getConnection();
 			//request.getParameter(String name)
+		
 			String v_jumin = request.getParameter("v_jumin");
 			String v_name = request.getParameter("v_name");
 			String m_no = request.getParameter("m_no");
