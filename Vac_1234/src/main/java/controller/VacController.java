@@ -58,7 +58,7 @@ public class VacController extends HttpServlet {
 				out.flush();
 			} else {
 				out.println("<script>");
-				out.println("alert('예약 번호가 입력되지 않았습니다.'); location.href= '" + context + "'; ;");
+				out.println("alert('예약 번호가 입력되지 않았습니다.'); location.href= '" + context + "';");
 				out.println("</script>");
 				out.flush();
 			}
@@ -70,6 +70,10 @@ public class VacController extends HttpServlet {
 		
 		case "/search":
 			view = vac.search(request, response);
+			break;
+			
+		case "/stat":
+			view = vac.stat(request, response);
 			break;
 		}
 		

@@ -124,4 +124,94 @@ public class VacDAO {
 		
 		
 	}
+	
+	public String stat(HttpServletRequest request, HttpServletResponse response) {
+		ArrayList<Status> statList = new ArrayList<Status>();
+		try {
+			conn = getConnection();
+			String sql = "select h.hospcode, h.hospname, count(h.hospcode) "
+					+ "from tbl_hosp_202108 h join tbl_vaccresv_202108 v "
+					+ "on h.hospcode = v.hospcode "
+					+ "group by h.hospcode, h.hospname "
+					+ "order by h.hospcode";
+			
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Status status = new Status();
+				status.setHcode(rs.getString(1));
+				status.setHname(rs.getString(2));
+				status.setHcount(rs.getString(3));
+				
+				statList.add(status);
+			}
+			request.setAttribute("list", statList);
+			
+			conn.close();
+			ps.close();
+			rs.close();
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		try {
+			conn = getConnection();
+			String sql = "select sum(count(h.hospcode)) "
+					+ "from tbl_hosp_202108 h "
+					+ "join tbl_vaccresv_202108 v "
+					+ "on h.hospcode = v.hospcode "
+					+ "group by h.hospcode, h.hospname "
+					+ "order by h.hospcode";
+			
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			String fullcount = null;
+			
+			if(rs.next()) fullcount = rs.getString(1);
+			
+			request.setAttribute("fullcount", fullcount);
+			
+			conn.close();
+			ps.close();
+			rs.close();
+			} catch (Exception e) {
+			
+			e.printStackTrace();
+			}
+			return "stat.jsp";
+		
+	}
 }
+//	public String fullcount(HttpServletRequest request, HttpServletResponse response) {
+//	try {
+//		conn = getConnection();
+//		String sql = "select sum(count(h.hospcode)) "
+//				+ "from tbl_hosp_202108 h "
+//				+ "join tbl_vaccresv_202108 v "
+//				+ "on h.hospcode = v.hospcode "
+//				+ "group by h.hospcode, h.hospname "
+//				+ "order by h.hospcode";
+//		
+//		ps = conn.prepareStatement(sql);
+//		rs = ps.executeQuery();
+//		
+//		String fullcount = null;
+//		
+//		if(rs.next()) fullcount = rs.getString(1);
+//		
+//		request.setAttribute("fullcount", fullcount);
+//		
+//		conn.close();
+//		ps.close();
+//		rs.close();
+//		} catch (Exception e) {
+//		
+//		e.printStackTrace();
+//		}
+//		return "stat.jsp";
+//	}
+
