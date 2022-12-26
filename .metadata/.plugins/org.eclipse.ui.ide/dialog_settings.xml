@@ -7,20 +7,22 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\hrdkorea\HRD_1234"/>
+			<item value="D:\project\1226\board"/>
+			<item value="C:\hrdkorea\Servers"/>
+			<item value="C:\hrdkorea\Vac_1234"/>
 			<item value="C:\HRD_1234\HRD_1234"/>
 			<item value="C:\HRD_1234\ojdbc6"/>
 			<item value="C:\HRD_1234\Servers"/>
 			<item value="C:\HRD_1234\Vac_1234"/>
-			<item value="C:\hrdkorea\Servers"/>
 			<item value="C:\hrdkorea\VOTE_1234"/>
 			<item value="C:\hrdkorea\HRD_5678"/>
-			<item value="C:\hrdkorea\HRD_1234"/>
 			<item value="C:\HRD_1234\VOTE_1234"/>
 			<item value="C:\HRD_1234\HRD_5678"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
-			<item value="C:\HRD_1234\Vac_1234\src\main\webapp\searchResult.jsp"/>
 			<item value=""/>
+			<item value="C:\HRD_1234\Vac_1234\src\main\webapp\searchResult.jsp"/>
 			<item value="C:\hrdkorea\HRD_1234\src\main\webapp\index.jsp"/>
 		</list>
 	</section>
@@ -33,5 +35,9 @@
 	<section name="ChooseWorkspaceDialogSettings">
 		<item key="DIALOG_X_ORIGIN" value="299"/>
 		<item key="DIALOG_Y_ORIGIN" value="292"/>
+	</section>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+		</list>
 	</section>
 </section>

@@ -4,4 +4,5 @@
   <temp-directory age="0" key="Tomcat v9.0 Server at localhost (2)" path="tmp1" recycle="false"/>
   <temp-directory age="0" key="Tomcat v9.0 Server at localhost (3)" path="tmp3" recycle="false"/>
   <temp-directory age="0" key="Tomcat v9.0 Server at HRD_1234_easy" path="tmp2" recycle="false"/>
+  <temp-directory age="0" key="Tomcat v9.0 Server at localhost 게시판" path="tmp2" recycle="false"/>
 </temp-directories>
