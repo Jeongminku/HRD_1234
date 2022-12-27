@@ -51,6 +51,9 @@
 	</div>
 	<script>
 	  /* controller에서 setAttribute("error", "에러메시지") 설정을 한것을 이렇게 사용 가능.  */
+	  <c:if test="${param.error != null}"> //쿼리스트링에서 에러가 오면 이쪽이 실행됩니다.
+	    alert("${param.error}");
+	  </c:if>
 	  <c:if test="${error != null}">
 	    alert("${error}");
 	  </c:if>

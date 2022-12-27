@@ -30,7 +30,7 @@
             </dl>
           </div>
           <div class="cont">
-            <textarea placeholder="내용 입력"></textarea>
+            <textarea name="content" placeholder="내용 입력"></textarea>
           </div>
         </div>
  		</form>

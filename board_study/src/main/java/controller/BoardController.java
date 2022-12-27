@@ -1,6 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.InvocationTargetException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.ServletConfig;
@@ -33,7 +36,7 @@ public class BoardController extends HttpServlet {
 		ctx = getServletContext(); //웹 어플리케이션의 자원관리를 하는 ServletContext를 얻어옵니다. 
 			   //ServletContext : 웹어플리케이션(웹프로젝트)하나당 하나의 서블릿 콘텍스트가 생성이 된다. 웹어플의 자원을 관리하며 종료될때 소멸한다. 톰캣에서 알아서 해줌.
 		
-	}
+	} 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8"); //request 객체에 저장된 한글 깨짐 방지
@@ -64,8 +67,20 @@ public class BoardController extends HttpServlet {
 			site = insertBoard(request);
 			break;
 		
-		case "/write": // 글쓰기를 눌렀다면 글쓰기 화면을 보여줘야함 -> 별도로 만들어야함.
+		case "/write": // 글쓰기를 눌렀다면 글쓰기 화면을 보여줘야함 -> 별도로 만들어야함. -> insert
 			site = "write.jsp";
+			break;
+			
+		case "/edit": // 수정 "화면" 을 보여줌
+			site = getViewForEdit(request);
+			break;
+			
+		case "/update": //update 기능
+			site = updateBoard(request);
+			break;
+			
+		case "/delete":
+			site = deleteBoard(request);
 			break;
 		}
 		
@@ -150,6 +165,7 @@ public class BoardController extends HttpServlet {
 		
 		return "view.jsp";
 	}
+
 	
 	public String insertBoard(HttpServletRequest request) {
 		//insert 누름 -> insertBoard 실행됨 -> request객체에는 어떤것들이 들어있는가?
@@ -166,11 +182,75 @@ public class BoardController extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			ctx.log("추가 과정에서 문제가 발생하였습니다.");
-			request.setAttribute("error", "게시글이 정상적으로 등록되지 않았습니다!");
-			return getList(request); 
+			try {
+				//get 방식으로 넘겨줄때 한글이 깨짐을 방지하기 위한 인코딩입니다.
+				String encodeName = URLEncoder.encode("게시물이 정상적으로 등록되지 않았습니다!", "UTF-8");
+				return "redirect:/list?error=" + encodeName;
+			} catch (UnsupportedEncodingException e1) {
+				e1.printStackTrace();
+			}
+			
 		}
 		return "redirect:/list";
-		
 	}
 	
+	
+	public String getViewForEdit(HttpServletRequest request) {
+		int board_no = Integer.parseInt(request.getParameter("board_no"));
+		
+		try {
+			Board b = dao.getViewForEdit(board_no); 
+			request.setAttribute("board", b);
+		} catch (Exception e) {
+			e.printStackTrace();
+			ctx.log("게시글을 가져오는 과정에서 문제 발생");
+			request.setAttribute("error", "게시글을 정상적으로 불러오지 못했습니다!"); 
+
+		} 
+		
+		return "edit.jsp";
+	}
+
+	
+	public String updateBoard(HttpServletRequest request) {
+		Board b = new Board();
+		try {
+			BeanUtils.populate(b, request.getParameterMap());
+			dao.updateBoard(b); //만들어둔 보드객체(b)를 넘겨주고 실행합니다.
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			ctx.log("수정(update) 과정에서 문제가 발생하였습니다.");
+			try {
+				//get 방식으로 넘겨줄때 한글이 깨짐을 방지하기 위한 인코딩입니다.
+				String encodeName = URLEncoder.encode("게시물이 정상적으로 수정(update)되지 않았습니다!", "UTF-8");
+				return "redirect:/view?board_no="+ b.getBoard_no() + "&error="+ encodeName;
+				
+			} catch (UnsupportedEncodingException e1) {
+				e1.printStackTrace();
+			}
+		}
+		return "redirect:/view?board_no="+ b.getBoard_no();
+	}
+	
+	
+	public String deleteBoard(HttpServletRequest request) {
+		int board_no = Integer.parseInt(request.getParameter("board_no"));
+		
+		try {
+			dao.deleteBoard(board_no);
+		} catch(Exception e) {
+			e.printStackTrace();
+			ctx.log("게시글을 삭제하는 과정에서 문제 발생");
+			try {
+				//get 방식으로 넘겨줄때 한글이 깨짐을 방지하기 위한 인코딩입니다.
+				String encodeName = URLEncoder.encode("게시물이 정상적으로 삭제(delete)되지 않았습니다!", "UTF-8");
+				return "redirect:/list?error="+encodeName;
+				
+			} catch (UnsupportedEncodingException e1) {
+				e1.printStackTrace();
+			}
+		}
+		return "redirect:/list"; 
+		}
 }

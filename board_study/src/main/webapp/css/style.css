@@ -13,12 +13,13 @@ html {
 
 ul,
 li {
-  list-style: none;
+  list-: none;
 }
 
 a {
   text-decoration: none;
   color: inherit;
+  cursor:pointer;
 }
 
 /* 공통 */

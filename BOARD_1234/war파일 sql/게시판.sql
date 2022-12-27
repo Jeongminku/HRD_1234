@@ -46,23 +46,23 @@ CREATE SEQUENCE BOARD_SEQ
 --INSERT INTO MEMBER VALUES('test2', '1234', '지석진');
 --INSERT INTO MEMBER VALUES('test3', '1234', '하하');
 
-INSERT INTO BOARD (BOARD_NO, USER_ID, TITLE, CONTENT, REG_DATE, VIEWS)
-VALUES(BOARD_SEQ.nextval, 'test1', '안녕하세요.', '미국 곳곳에 겨울 혹한과 눈폭풍이 불어닥치면서 제작비로 4천 5백억 원 이상이 들어간 영화 흥행에 타격이 있을 것이란 보도들이 이어졌습니다.', sysdate, 0);
+insert into board (board_no, user_id, title, content, reg_date, views)
+values(board_seq.nextval, 'test1', '안녕하세요.', '미국 곳곳에 겨울 혹한과 눈폭풍이 불어닥치면서 제작비로 4천 5백억 원 이상이 들어간 영화 흥행에 타격이 있을 것이란 보도들이 이어졌습니다.', sysdate, 0);
 
-INSERT INTO BOARD (BOARD_NO, USER_ID, TITLE, CONTENT, REG_DATE, VIEWS)
-VALUES(BOARD_SEQ.nextval, 'test2', '날씨가 춥네요.', '하지만 뉴욕이 1906년 이후 가장 추운 크리스마스를 맞는 등 미국 전역에 폭설과 혹한이 몰아치면서 대부분 영화 흥행이 기대 이하에 머물 것으로 전망됩니다.', sysdate, 5);
+insert into board (board_no, user_id, title, content, reg_date, views)
+values(board_seq.nextval, 'test2', '날씨가 춥네요.', '하지만 뉴욕이 1906년 이후 가장 추운 크리스마스를 맞는 등 미국 전역에 폭설과 혹한이 몰아치면서 대부분 영화 흥행이 기대 이하에 머물 것으로 전망됩니다.', sysdate, 5);
 
-INSERT INTO BOARD (BOARD_NO, USER_ID, TITLE, CONTENT, REG_DATE, VIEWS)
-VALUES(BOARD_SEQ.nextval, 'test3', '날씨가 춥네요222', '하지만 뉴욕이 1906년 이후 가장 추운 크리스마스를 맞는 등 미국 전역에 폭설과 혹한이 몰아치면서 대부분 영화 흥행이 기대 이하에 머물 것으로 전망됩니다.', sysdate, 15);
+insert into board (board_no, user_id, title, content, reg_date, views)
+values(board_seq.nextval, 'test3', '날씨가 춥네요222', '하지만 뉴욕이 1906년 이후 가장 추운 크리스마스를 맞는 등 미국 전역에 폭설과 혹한이 몰아치면서 대부분 영화 흥행이 기대 이하에 머물 것으로 전망됩니다.', sysdate, 15);
 
-INSERT INTO BOARD (BOARD_NO, USER_ID, TITLE, CONTENT, REG_DATE, VIEWS)
-VALUES(BOARD_SEQ.nextval, 'test1', '연말입니다.', '하지만 뉴욕이 1906년 이후 가장 추운 크리스마스를 맞는 등 미국 전역에 폭설과 혹한이 몰아치면서 대부분 영화 흥행이 기대 이하에 머물 것으로 전망됩니다.', sysdate, 0);
+insert into board (board_no, user_id, title, content, reg_date, views)
+values(board_seq.nextval, 'test1', '연말입니다.', '하지만 뉴욕이 1906년 이후 가장 추운 크리스마스를 맞는 등 미국 전역에 폭설과 혹한이 몰아치면서 대부분 영화 흥행이 기대 이하에 머물 것으로 전망됩니다.', sysdate, 0);
 
-INSERT INTO BOARD (BOARD_NO, USER_ID, TITLE, CONTENT, REG_DATE, VIEWS)
-VALUES(BOARD_SEQ.nextval, 'test2', '치즈케이크 맛있음', '하지만 뉴욕이 1906년 이후 가장 추운 크리스마스를 맞는 등 미국 전역에 폭설과 혹한이 몰아치면서 대부분 영화 흥행이 기대 이하에 머물 것으로 전망됩니다.', sysdate, 2);
+insert into board (board_no, user_id, title, content, reg_date, views)
+values(board_seq.nextval, 'test2', '치즈케이크 맛있음', '하지만 뉴욕이 1906년 이후 가장 추운 크리스마스를 맞는 등 미국 전역에 폭설과 혹한이 몰아치면서 대부분 영화 흥행이 기대 이하에 머물 것으로 전망됩니다.', sysdate, 2);
 
-INSERT INTO BOARD (BOARD_NO, USER_ID, TITLE, CONTENT, REG_DATE, VIEWS)
-VALUES(BOARD_SEQ.nextval, 'test3', '저녁은 뭘먹나', '하지만 뉴욕이 1906년 이후 가장 추운 크리스마스를 맞는 등 미국 전역에 폭설과 혹한이 몰아치면서 대부분 영화 흥행이 기대 이하에 머물 것으로 전망됩니다.', sysdate, 1);
+insert into board (board_no, user_id, title, content, reg_date, views)
+values(board_seq.nextval, 'test3', '저녁은 뭘먹나', '하지만 뉴욕이 1906년 이후 가장 추운 크리스마스를 맞는 등 미국 전역에 폭설과 혹한이 몰아치면서 대부분 영화 흥행이 기대 이하에 머물 것으로 전망됩니다.', sysdate, 1);
 
 commit;
 
@@ -97,3 +97,4 @@ select BOARD_NO, title, USER_ID, TO_CHAR(reg_date, 'yyyy.mm.dd') reg_date, views
 
 --조회수 증가용
 update board set views = (views + 1) where board_no = ?;
+select * from board;

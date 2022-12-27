@@ -49,7 +49,7 @@
 				</div>
 			</form>
 			<div class="bt_wrap">
-				<a href="#" class="on" onclick="chkForm(); return false;">등록</a> <a href="list">취소</a>
+				<a href="" class="on" onclick="chkForm(); return false;">등록</a> <a href="list">취소</a>
 			</div>
 		</div>
 	</div>
