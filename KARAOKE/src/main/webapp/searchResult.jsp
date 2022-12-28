@@ -27,6 +27,14 @@
 					</tr>
 				</thead>
 				<tbody>
+				<c:if test="${empty songList}">
+						<tr>
+						<td></td>
+						<td>해당하는 노래가 없습니다.</td>
+						<td></td>
+						</tr>
+				</c:if>
+				<c:if test="${songList ne 'null'}">
 					<c:forEach var="song" items="${songList}" varStatus="status">
 						<tr>
 							<td>${song.songno}</td>
@@ -34,6 +42,8 @@
 							<td>${song.singer}</td>
 						</tr>
 					</c:forEach>
+				</c:if>
+				
 				</tbody>
 			</table>
 				

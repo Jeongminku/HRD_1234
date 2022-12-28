@@ -1,6 +1,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,11 +10,6 @@
 <link rel="stylesheet" href="./css/style.css" />
 <script type="text/javascript" src="script.js"></script>
 <%@ page import="DTO.*" %>
-<%
-request.setCharacterEncoding("UTF-8");
-ArrayList<Result> showlist = new ArrayList<Result>();
-showlist = (ArrayList<Result>)request.getAttribute("showlist");
-%> 
 </head>
 <body>
 	<%@ include file="header.jsp" %>
@@ -27,13 +23,13 @@ showlist = (ArrayList<Result>)request.getAttribute("showlist");
 						<th>노래제목</th>
 						<th>가수</th>
 					</tr>
-				<%for(Result sl : showlist) {%>
+				<c:forEach var="songlist" items="${alllist}">
 					<tr>
-						<td><%=sl.getSongno() %></td>
-						<td><%=sl.getSongtitle() %></td>
-						<td><%=sl.getSinger() %></td>
+						<td>${songlist.songno}</td>
+						<td>${songlist.songtitle}</td>
+						<td>${songlist.singer}</td>
 					</tr>
-				<% } %>
+				</c:forEach>
 				</table>
 				
 			</div>

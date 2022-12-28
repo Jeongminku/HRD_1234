@@ -20,7 +20,7 @@
 	</div>
 	<form name=songfm action=select>
 	<div>
-		<input type="text" placeholder="노래 코드를 입력해주세요"></input>
+		<input type="text" name="songno" placeholder="노래 코드를 입력해주세요"></input>
 		<button class="btn" type="submit" onclick="fn_submit(); return false;">확인</button>
 	</div>
 	</form>

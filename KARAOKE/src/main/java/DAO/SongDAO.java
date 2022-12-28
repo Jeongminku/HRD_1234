@@ -53,9 +53,64 @@ public class SongDAO {
 		return songList;
 	}
 	
+	public ArrayList<Result> getAllList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Connection conn = open();
+		ArrayList<Result> allList = new ArrayList<Result>();
+		String sql = "select songno, title, singer from song";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		
+		try(conn; pstmt; rs;) {
+			while (rs.next()) {
+				Result s = new Result();
+				s.setSongno(rs.getInt(1));
+				s.setSongtitle(rs.getString(2));
+				s.setSinger(rs.getString(3));
+				
+				allList.add(s);
+			}
+		}
+		return allList;
+		
+		
+	}
 	
+	public void insertSong(Result s) throws Exception {
+		Connection conn = open();
+		String sql = "insert into song (songno, title, singer, yaddress) values (?,?,?,?)";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		
+		try(conn; pstmt) {
+			pstmt.setInt(1, s.getSongno());			
+			pstmt.setString(2, s.getSongtitle());			
+			pstmt.setString(3, s.getSinger());			
+			pstmt.setString(4, s.getYaddress());
+			pstmt.executeUpdate();		
+			
+		}
 	
+	}
 	
+	public Result select(int songno) throws Exception {
+		Connection conn = open();
+		Result s = new Result();
+		
+		String sql = "select songno, title, yaddress, singer from song where songno = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, songno);
+		ResultSet rs = pstmt.executeQuery();
+		
+		try(conn; pstmt; rs;) {
+			while (rs.next()) {
+				s.setSongno(songno);
+				s.setSongtitle(rs.getString(2));
+				s.setYaddress(rs.getString(3));
+				s.setSinger(rs.getString(4));
+				
+			}
+			return s;
+		}
+	}
 	
 	
 	

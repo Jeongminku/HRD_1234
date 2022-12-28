@@ -12,7 +12,7 @@
 	<%@ include file="header.jsp" %>
 	<section>
 		<div class="title">노래검색</div>
-			<form name = frm action = "getList">
+			<form name = frm action = "searchsong">
 				<div class = "table">
 					<table border=1>
 						<tr>

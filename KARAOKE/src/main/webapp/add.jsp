@@ -40,7 +40,7 @@ showlist = (ArrayList<Result>)request.getAttribute("showlist");
 						</tr>
 					</table>
 					<button class="btn" type="submit" onclick="fn_submit(); return false;">등록하기</button>
-					<button class="btn" type="submit" onclick="fn_submit(); return false;">RESET</button>
+					<button class="btn" type="reset" onclick="fn_submit(); return false;">RESET</button>
 				</form>
 				
 			</div>

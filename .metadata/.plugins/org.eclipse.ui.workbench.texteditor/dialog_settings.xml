@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="bottom"/>
+		<item key="selection" value="redirect"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="redirect"/>
+			<item value="insert"/>
 			<item value="bottom"/>
 			<item value="nav"/>
 			<item value="style"/>
@@ -20,9 +22,7 @@
 			<item value="#"/>
 			<item value="delete"/>
 			<item value="삭제"/>
-			<item value="insert"/>
 			<item value="cont"/>
-			<item value="post"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>
@@ -30,8 +30,8 @@
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="-81"/>
-		<item key="DIALOG_Y_ORIGIN" value="371"/>
+		<item key="DIALOG_X_ORIGIN" value="318"/>
+		<item key="DIALOG_Y_ORIGIN" value="-299"/>
 		<item key="DIALOG_WIDTH" value="322"/>
 		<item key="DIALOG_HEIGHT" value="391"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
