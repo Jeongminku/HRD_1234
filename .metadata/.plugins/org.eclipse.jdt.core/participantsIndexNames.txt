@@ -1,4 +1,6 @@
 INDEX VERSION 1.131
+C:\hrdkorea\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2513568641.index
+\KARAOKE\src\main\java
 C:\hrdkorea\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1087188315.index
 \Vac_1234\src\main\java
 C:\hrdkorea\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3882650937.index

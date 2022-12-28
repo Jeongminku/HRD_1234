@@ -12,7 +12,7 @@
 		<ul>
 			<li><a href="search">노래 찾기</a></li>
 			<li><a href="list">노래 목록</a></li>
-			<li><a href="add">접종인원통계</a></li>
+			<li><a href="add">노래 추가</a></li>
 			<li><a href="home">홈으로</a></li>
 		</ul>
 	</nav>

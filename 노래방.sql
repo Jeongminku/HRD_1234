@@ -13,3 +13,5 @@ USERID VARCHAR2(20),
 REP_CONTENT VARCHAR(90),
 REP_DATE DATE
 );
+
+select * from song;

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,7 @@
 	<%@ include file="header.jsp" %>
 	<div style="display: flex; flex-direction: row;">
 		<div>
-		<iframe id="iframeid" width="950" height="450" src="https://www.youtube.com/embed/a-5qMx92Tj4?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		<iframe width="950" height="450" src="https://www.youtube.com/embed/${}?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 		</div>
 		<div>
 		댓글창이 들어갈 곳
