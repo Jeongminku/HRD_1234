@@ -78,6 +78,19 @@ public class SongController extends HttpServlet {
 		case "/select":
 			view = select(request);
 			break;
+			
+		case "/reply":
+			view = reply(request);
+			break;
+			
+		case "/delete":
+			view = deleteReply(request);
+			break;
+			
+		case "/update":
+			view = updateReply(request);
+			break;
+				
 		}
 		
 		if(view.startsWith("redirect:/")) {
@@ -148,6 +161,63 @@ public class SongController extends HttpServlet {
 			ctx.log("노래코드로 불러오는 과정에서 문제 발생");
 			request.setAttribute("error", "노래를 정상적으로 불러오지 못했습니다.");
 		}
+		List<Reply> replylist;
+		try {
+			replylist = song.getreplyList(request);
+			request.setAttribute("replylist", replylist);
+		} catch (Exception e) {
+			e.printStackTrace();
+			ctx.log("댓글 조회에서 문제 발생");
+			request.setAttribute("error", "댓글 리스트가 정상적으로 로드되지 않았습니다.");
+		}
 		return "select.jsp";
 	}
+	
+	public String reply(HttpServletRequest request) {
+		Reply r = new Reply();
+		int songno = 0;
+		try {
+			BeanUtils.populate(r, request.getParameterMap());
+			songno = song.reply(r);
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+		List<Reply> replylist;
+		try {
+			replylist = song.getreplyList(request);
+			request.setAttribute("replylist", replylist);
+		} catch (Exception e) {
+			e.printStackTrace();
+			ctx.log("댓글 조회에서 문제 발생");
+			request.setAttribute("error", "댓글 리스트가 정상적으로 로드되지 않았습니다.");
+		}
+		return "select?songno="+songno;
+	}
+
+	public String deleteReply(HttpServletRequest request) {
+		int commentno = Integer.parseInt(request.getParameter("commentno"));
+		int songno = Integer.parseInt(request.getParameter("songno"));
+		
+		try {
+			song.deleteReply(commentno);
+		} catch(Exception e) {
+			e.printStackTrace();
+			
+		}
+		return "redirect:/select?songno="+songno;
+	}
+	
+	public String updateReply(HttpServletRequest request) {
+		int commentno = Integer.parseInt(request.getParameter("commentno"));
+		int songno = Integer.parseInt(request.getParameter("songno"));
+		
+		try {
+			song.updateReply(request, commentno);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/select?songno="+songno;
+	}
 }
+

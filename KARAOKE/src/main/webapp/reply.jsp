@@ -29,7 +29,7 @@
 				<tr>
 					<td>${replylist.userid}</td>
 					<td>${replylist.rep_content}</td>
-					<td><button type="button" onclick="chkDelete(${replylist.commentno},${replylist.songno})">삭제하기</button></td>					
+					<td><button class="delete" type="button"></button></td>					
 				</tr>
 			</c:forEach>
 			</table>  
@@ -44,18 +44,6 @@
 	</div>
 	</form>
 	<%@ include file="footer.jsp" %>
-<script>
-function chkDelete(a, b) {
-	
-	if(confirm("댓글을 삭제하시겠습니까?123")){
-		const url = location.origin;
-		console.log("qwe123");
-		location.href = 'delete?commentno='+a+'&songno='+b;
-		
-	} else{
-		return false;
-	}
-}
-</script>
+
 </body>
 </html>

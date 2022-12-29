@@ -56,7 +56,7 @@ public class SongDAO {
 	public ArrayList<Result> getAllList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Connection conn = open();
 		ArrayList<Result> allList = new ArrayList<Result>();
-		String sql = "select songno, title, singer from song";
+		String sql = "select songno, title, singer from song order by songno";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
 		
@@ -112,7 +112,74 @@ public class SongDAO {
 		}
 	}
 	
+	public int reply(Reply r) throws Exception {
+//		int result = 0;
+		Connection conn = open();
+		String sql = "insert into songreply(commentno, songno, userid, rep_content, rep_date ) values(AUTOPLUS.nextval, ?, ?, ?, sysdate)";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		
+		try(conn; pstmt) {
+			pstmt.setInt(1, r.getSongno());
+			pstmt.setString(2, r.getUserid());
+			pstmt.setString(3, r.getRep_content());
+			
+			pstmt.executeUpdate();
+			
+			
+		}
+		return r.getSongno();
+	}
 	
+	public ArrayList<Reply> getreplyList(HttpServletRequest request) throws Exception {
+		Connection conn = open();
+		ArrayList<Reply> replyList = new ArrayList<Reply>();
+		String sql = "select userid, rep_content, commentno, songno from songreply where songno = ? order by commentno";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, Integer.parseInt(request.getParameter("songno")));
+		ResultSet rs = pstmt.executeQuery();
+		
+		try(conn; pstmt; rs;) {
+			while (rs.next()) {
+				Reply r = new Reply();
+				r.setUserid(rs.getString(1));
+				r.setRep_content(rs.getString(2));
+				r.setCommentno(rs.getInt(3));
+				r.setSongno(rs.getInt(4));
+				replyList.add(r);
+			}
+		}
+		return replyList;
+		
+		
+	}
+	
+	public void deleteReply(int commentno) throws Exception {
+		Connection conn = open();
+		
+		String sql = "delete from songreply where commentno=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		
+		try (conn; pstmt) {
+			pstmt.setInt(1, commentno);
+		
+			if (pstmt.executeUpdate() != 1) {
+				throw new Exception("삭제된글이 없습니다다다다다다다");
+			}
+		}
+	}
+	
+	public void updateReply(HttpServletRequest request, int commentno) throws Exception {
+		Connection conn = open();
+		
+		String sql = "update songreply set userid = ?, rep_content = ?, where commentno = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		
+		try(conn; pstmt){
+			pstmt.setString(1,r.);
+			
+			pstmt.setInt(3, commentno);
+		}
+	}
 	
 	/*
 	public String search1(HttpServletRequest request, HttpServletResponse response) {
