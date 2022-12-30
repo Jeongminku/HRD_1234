@@ -23,8 +23,10 @@
 			<tr>
 			<td> <input type="text" name="userid" placeholder="닉네임"> </td>
 			<td> <input type="text" name="rep_content" placeholder= "댓글 추가..."> </td>
+			<td>등록시간</td>
 			<td> <button class="rep_btn" type="submit" onclick="fn_repSubmit(); return false;">댓글</button> <td>
 			</tr>
+			
 			<c:forEach var="replylist" items="${replylist}">
 				<tr>
 					<td>${replylist.userid}</td>

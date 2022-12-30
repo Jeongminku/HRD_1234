@@ -87,11 +87,19 @@ public class SongController extends HttpServlet {
 			view = deleteReply(request);
 			break;
 			
-		case "/update":
-			view = updateReply(request);
+		case "/edit":
+			view = songForEdit(request);
 			break;
-				
-		}
+			
+		case "/update":
+			view = updateSong(request);
+			break;
+		
+		case "/deleteSong":
+			view = deleteSong(request);
+			break;
+			
+}
 		
 		if(view.startsWith("redirect:/")) {
 			String rview = view.substring("redirect:/".length());
@@ -208,17 +216,40 @@ public class SongController extends HttpServlet {
 		return "redirect:/select?songno="+songno;
 	}
 	
-	public String updateReply(HttpServletRequest request) {
-		int commentno = Integer.parseInt(request.getParameter("commentno"));
+	public String songForEdit(HttpServletRequest request) {
 		int songno = Integer.parseInt(request.getParameter("songno"));
-		
-		
 		try {
-			song.updateReply(request, commentno);
-		} catch(Exception e) {
+			Result s = song.getSongForEdit(songno);
+			request.setAttribute("song", s);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:/select?songno="+songno;
+		
+		return "edit.jsp";
+	}
+	
+	public String updateSong(HttpServletRequest request) {
+		Result s = new Result();
+		try {
+			BeanUtils.populate(s, request.getParameterMap());
+			song.updateSong(s);
+			System.out.println("song.updateSong(실행)");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "/list";
+	}
+	
+	public String deleteSong(HttpServletRequest request) {
+		int songno = Integer.parseInt(request.getParameter("songno"));
+		try {
+			song.deleteSong(songno);
+		} catch(Exception e) {
+			e.printStackTrace();
+			
+		}
+		return "redirect:/list";
 	}
 }
+
 

@@ -153,7 +153,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="C:\hrdkorea\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\hrdkorea\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\KARAOKE" path="/KARAOKE" reloadable="true" source="org.eclipse.jst.jee.server:KARAOKE"/><Context docBase="C:\hrdkorea\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\board_study" path="/board_study" reloadable="true" source="org.eclipse.jst.jee.server:board_study"/></Host>
+      <Context docBase="C:\HRD_1234\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\HRD_1234\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\board_study" path="/board_study" reloadable="true" source="org.eclipse.jst.jee.server:board_study"/><Context docBase="C:\HRD_1234\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\HRD_1234" path="/HRD_1234" reloadable="true" source="org.eclipse.jst.jee.server:HRD_1234"/></Host>
     </Engine>
   </Service>
 </Server>

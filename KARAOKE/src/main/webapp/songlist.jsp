@@ -14,26 +14,36 @@
 <body>
 	<%@ include file="header.jsp" %>
 	<section>
-		<div class="title">노래검색</div>
-			<div class="wrapper">
-				
-				<table>
+			<div class="wrap">
+				<table class="songlist">
+					<caption>
+						<h1>노래 리스트</h1>
+					</caption>
+				<thead>
 					<tr>
 						<th>곡 번호</th>
 						<th>노래제목</th>
-						<th>가수</th>
+						<th>가 수</th>
+						<th><th>
 					</tr>
-				<c:forEach var="songlist" items="${alllist}">
-					<tr>
-						<td>${songlist.songno}</td>
-						<td>${songlist.songtitle}</td>
-						<td>${songlist.singer}</td>
-					</tr>
-				</c:forEach>
+				</thead>
+				<tbody>
+					<c:forEach var="songlist" items="${alllist}">
+						<tr>
+							<td>${songlist.songno}</td>
+							<td>${songlist.songtitle}</td>
+							<td>${songlist.singer}</td>
+							<td>
+								<a href="./edit?songno=${songlist.songno}">[수정]</a>
+								<a href="./deleteSong?songno=${songlist.songno}" onclick="songDelete(${songlist.songno}); return false;">[삭제]</a>
+							</td>
+							
+						</tr>
+					</c:forEach>
+					</tbody>					
 				</table>
-				
 			</div>
-		
+			
 	</section>
 	<%@ include file="footer.jsp" %>
 </body>

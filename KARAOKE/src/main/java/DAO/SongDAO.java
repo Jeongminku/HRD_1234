@@ -133,7 +133,7 @@ public class SongDAO {
 	public ArrayList<Reply> getreplyList(HttpServletRequest request) throws Exception {
 		Connection conn = open();
 		ArrayList<Reply> replyList = new ArrayList<Reply>();
-		String sql = "select userid, rep_content, commentno, songno from songreply where songno = ? order by commentno";
+		String sql = "select userid, rep_content, commentno, songno, rep_date from songreply where songno = ? order by commentno";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, Integer.parseInt(request.getParameter("songno")));
 		ResultSet rs = pstmt.executeQuery();
@@ -145,6 +145,7 @@ public class SongDAO {
 				r.setRep_content(rs.getString(2));
 				r.setCommentno(rs.getInt(3));
 				r.setSongno(rs.getInt(4));
+				r.setRep_date(rs.getDate(5));
 				replyList.add(r);
 			}
 		}
@@ -168,19 +169,60 @@ public class SongDAO {
 		}
 	}
 	
-	public void updateReply(HttpServletRequest request, int commentno) throws Exception {
+	public Result getSongForEdit(int songno) throws Exception {
 		Connection conn = open();
-		
-		String sql = "update songreply set userid = ?, rep_content = ?, where commentno = ?";
+
+		Result s = new Result();
+		String sql = "select songno, title, singer, yaddress from song where songno=?";
+
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		
-		try(conn; pstmt){
-			pstmt.setString(1,r.);
-			
-			pstmt.setInt(3, commentno);
+		pstmt.setInt(1, songno);
+		ResultSet rs = pstmt.executeQuery();
+
+		rs.next();
+
+		try (conn; pstmt; rs) {
+			s.setSongno(rs.getInt(1));
+			s.setSongtitle(rs.getString(2));
+			s.setSinger(rs.getString(3));
+			s.setYaddress(rs.getString(4));			
+
+			pstmt.executeQuery();
+			return s;
 		}
 	}
 	
+	public void updateSong(Result s) throws Exception {
+		Connection conn = open();
+		String sql = "update song set title = ?, singer = ?, yaddress = ? where songno = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		
+		try(conn;pstmt) {
+			pstmt.setString(1, s.getSongtitle());
+			pstmt.setString(2, s.getSinger());
+			pstmt.setString(3, s.getYaddress());
+			pstmt.setInt(4, s.getSongno());
+			pstmt.executeUpdate();
+		}		
+	}
+	
+	public void deleteSong(int songno) throws Exception {
+		Connection conn = open();
+		
+		String sql = "delete from song where songno=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		
+		try (conn; pstmt) {
+			pstmt.setInt(1, songno);
+			pstmt.executeUpdate();
+			}
+		}
+	}
+
+
+
+
+
 	/*
 	public String search1(HttpServletRequest request, HttpServletResponse response) {
 		ArrayList<Result> searchResult = new ArrayList<Result>();	
@@ -281,6 +323,6 @@ public class SongDAO {
 		String sql = "select "
 	}
 	*/
-}
+
 
 

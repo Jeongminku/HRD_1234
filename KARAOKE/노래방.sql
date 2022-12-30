@@ -34,3 +34,9 @@ select songno, title, yaddress from song;
 select songno, title, singer from song where title='È²±Ýº°';
 
 select songno, title, singer from song order by songno;
+
+CREATE SEQUENCE AUTOPLUS INCREMENT BY 1 START WITH 1 MAXVALUE 9999 MINVALUE 1 NOCYCLE NOCACHE NOORDER;
+
+select * from songreply;
+
+select userid, rep_content, commentno, songno, rep_date 'yyyy-mm-dd' from songreply where songno = 12300;

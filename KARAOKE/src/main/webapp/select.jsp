@@ -23,18 +23,24 @@
 			<tr>
 			<td> <input type="text" name="userid" placeholder="닉네임"> </td>
 			<td> <input type="text" name="rep_content" placeholder= "댓글 추가..."> </td>
+			<th>등록시간</th>
 			<td> <button class="rep_btn" type="submit" onclick="fn_repSubmit(); return false;">댓글</button> <td>
 			</tr>
+		
+		
 			<c:forEach var="replylist" items="${replylist}">
 				<tr>
 					<td>${replylist.userid}</td>
 					<td>${replylist.rep_content}</td>
-					<td><button type="button" onclick="chkDelete(${replylist.commentno},${replylist.songno})">삭제하기</button></td>					
+					<td>${replylist.rep_date}</td>
+					<td><button type="button" onclick="chkDelete(${replylist.commentno},${replylist.songno})">삭제하기</button></td>
+					<td><a href="edit">수정</a></td>
+													
 				</tr>
 			</c:forEach>
 			</table>  
 			</div>
-			</form>
+		</form>	
 		</div>
 	</div>
 	<form name=songfm action=select>
@@ -47,7 +53,7 @@
 <script>
 function chkDelete(a, b) {
 	
-	if(confirm("댓글을 삭제하시겠습니까?123")){
+	if(confirm("댓글을 삭제하시겠습니까?")){
 		const url = location.origin;
 		console.log("qwe123");
 		location.href = 'delete?commentno='+a+'&songno='+b;
