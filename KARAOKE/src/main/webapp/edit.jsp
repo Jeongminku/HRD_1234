@@ -14,7 +14,7 @@
 	<%@ include file="header.jsp" %>
 	<section>
 		<div class="title">노래 정보 변경하기</div>
-			<div class="wrapper">
+			<div class="wrapper" style="display: flex; flex-direction: column; padding: 10px">
 				<form name=fra action="update">
 					<table>
 						<tr>
@@ -35,9 +35,9 @@
 						</tr>
 					</table>
 				</form>
-					<div>
-						<button class="btn" type="button" onclick="fra_submit(); return false;">수정완료</button>
-						<a href="list">취소하기</a>
+					<div style="padding:15px">
+						<button class="edit_btn" type="button" onclick="fra_submit(); return false;">수정완료</button>
+						<button class="edit_btn" type="button" onclick="location.href='/KARAOKE/list'">취소하기</button>
 					</div>
 			</div>
 		

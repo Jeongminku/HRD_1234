@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="삭제"/>
+		<item key="selection" value="sec"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="삭제"/>
-			<item value="수정"/>
-			<item value="upda"/>
-			<item value="updateB"/>
-			<item value="update"/>
-			<item value="Update"/>
-			<item value="updat"/>
-			<item value="Form"/>
+			<item value="sec"/>
+			<item value="table"/>
+			<item value="search"/>
+			<item value="select"/>
+			<item value="result"/>
+			<item value="insert"/>
+			<item value="add"/>
 			<item value="form"/>
-			<item value="index"/>
+			<item value="repSubmit"/>
+			<item value="chkForm"/>
 			<item value="reply"/>
-			<item value="attri"/>
-			<item value=" replyList"/>
-			<item value="songreply"/>
-			<item value="song"/>
+			<item value="write"/>
+			<item value="songlist"/>
+			<item value="btn"/>
+			<item value="삭제"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>

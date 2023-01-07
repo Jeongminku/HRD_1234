@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,21 +9,24 @@
 <script type="text/javascript" src="script.js"></script>
 </head>
 <body>
-	<%@ include file="header.jsp" %>
-	<div style="display: flex; flex-direction: row;">
-		<div>
-		<iframe id="iframeid" width="950" height="450" src="https://www.youtube.com/embed/a-5qMx92Tj4?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	<%@ include file="header.jsp"%>
+	<section>
+		<div class="index_div" style="display: flex; flex-direction: row; justify-content: center;">
+			<div>
+				<iframe id="iframeid" width="1080" height="450"
+					src="https://www.youtube.com/embed/wI38vZqNLd0?autoplay=1&mute=1"
+					title="YouTube video player" frameborder="0"
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+					allowfullscreen></iframe>
+			</div>
 		</div>
-		<div style="display: flex; flex-direction: column;">
-		
-		</div>
-	</div>	
-			<form name=songfm action=select>
-				<div style="display: flex; flex-direction: row">
-					<input type="text" name="songno" placeholder="노래 코드를 입력해주세요"></input>
-					<button class="btn" type="button" onclick="fn_submit(); return false;">확인</button>
-				</div>
-			</form>
-	<%@ include file="footer.jsp" %>
+		<form name=songfm action=select>
+			<div style="display: flex; flex-direction: row; justify-content: center;">
+				<input class="inputcode" type="text" name="songno" placeholder="노래 코드를 입력해주세요"></input>
+				<button class="btn" type="button" onclick="fn_submit(); return false;">확인</button>
+			</div>
+		</form>
+	</section>
+	<%@ include file="footer.jsp"%>
 </body>
 </html>

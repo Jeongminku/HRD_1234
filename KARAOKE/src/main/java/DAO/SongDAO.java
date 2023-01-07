@@ -75,20 +75,20 @@ public class SongDAO {
 		
 	}
 	
-	public void insertSong(Result s) throws Exception {
+	public int insertSong(Result s) throws Exception {
+		System.out.println("DAO insertsong");
 		Connection conn = open();
+		int result =0;
 		String sql = "insert into song (songno, title, singer, yaddress) values (?,?,?,?)";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		
 		try(conn; pstmt) {
 			pstmt.setInt(1, s.getSongno());			
 			pstmt.setString(2, s.getSongtitle());			
 			pstmt.setString(3, s.getSinger());			
 			pstmt.setString(4, s.getYaddress());
-			pstmt.executeUpdate();		
-			
+			result = pstmt.executeUpdate();
 		}
-	
+		return result;
 	}
 	
 	public Result select(int songno) throws Exception {
@@ -217,8 +217,30 @@ public class SongDAO {
 			pstmt.executeUpdate();
 			}
 		}
+}
+	/*
+public ArrayList<Result> songnoList(HttpServletRequest request) throws Exception {
+	Connection conn = open();
+	ArrayList<Result> songnoList = new ArrayList<Result>();
+	String songno = request.getParameter("songno");
+	String sql= "select songno, title, singer from song where songno="+ songno;
+	PreparedStatement pstmt = conn.prepareStatement(sql);
+	ResultSet rs = pstmt.executeQuery();
+	
+	try (conn; pstmt; rs;) {
+		while (rs.next()) {
+			Result s = new Result();
+			s.setSongno(rs.getInt(1));
+			s.setSongtitle(rs.getString(2));
+			s.setSinger(rs.getString(3));
+			
+			songnoList.add(s);
+		}
 	}
-
+	
+	return songnoList;
+	}
+	*/
 
 
 

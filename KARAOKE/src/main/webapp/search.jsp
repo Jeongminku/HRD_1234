@@ -14,15 +14,15 @@
 		<div class="title">노래검색</div>
 			<form name = frm action = "searchsong">
 				<div class = "table">
-					<table border=1>
+					<table border=1 style="width:700px">
 						<tr>
-							<th>노래 제목을 입력 하시오.</th>
+							<th>검색할 노래 제목을 입력 해주세요.</th>
 							<td><input type="text" name="songtitle"></td>
 						</tr>
 						<tr>
 							<td colspan="2">
-							<button class="btn" type="submit" onclick="fn_submit(); return false;">노래조회</button>
-							<button class="btn" type="button" onclick="">홈으로</button>
+							<button class="search_btn" type="submit" onclick="fn_submit(); return false;">노래조회</button>
+							<button class="search_btn" type="button" onclick="location.href='/KARAOKE/home'">홈으로</button>
 							</td>
 						</tr>
 					</table>

@@ -72,7 +72,7 @@ public class SongController extends HttpServlet {
 			break;
 		
 		case "/insert":
-			view = insertSong(request);
+			view = insertSong(request,response);
 			break;
 			
 		case "/select":
@@ -139,19 +139,28 @@ public class SongController extends HttpServlet {
 	
 	}
 	
-	public String insertSong(HttpServletRequest request) {
+	public String insertSong(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("CON insertsong");
 		Result s = new Result();
+		int result = 0;
 		try {
 			BeanUtils.populate(s, request.getParameterMap());
-			song.insertSong(s);
-			
+			result = song.insertSong(s);
+			System.out.println("DAO insertsong 결과 : "+result);
+			response.setContentType("text/html; charset=UTF-8");
+			if(result == 0 ) {
+				PrintWriter out = response.getWriter();
+				out.print("<script>");
+				out.print("alert('노래가 정상적으로 등록되지 않았습니다!');");
+				out.print("</script>");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			ctx.log("노래 추가 과정에서 문제가 발생하였습니다.");
 			try {
-				String encodeName = URLEncoder.encode("노래가 정상적으로 등록되지 않았습니다.", "UTF-8");
-				return "redirect:/list?error="+encodeName;
-			} catch (UnsupportedEncodingException e1) {
+				 String encodeName = URLEncoder.encode("노래가 정상적으로 등록되지 않았습니다.", "UTF-8");
+				 return "redirect:/list?error="+encodeName;
+			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 		}
@@ -160,7 +169,6 @@ public class SongController extends HttpServlet {
 	
 	public String select(HttpServletRequest request) {
 		int songno = Integer.parseInt(request.getParameter("songno"));
-		
 		try {
 			Result s = song.select(songno);
 			request.setAttribute("song", s);
@@ -178,6 +186,7 @@ public class SongController extends HttpServlet {
 			ctx.log("댓글 조회에서 문제 발생");
 			request.setAttribute("error", "댓글 리스트가 정상적으로 로드되지 않았습니다.");
 		}
+		
 		return "select.jsp";
 	}
 	
@@ -200,7 +209,7 @@ public class SongController extends HttpServlet {
 			ctx.log("댓글 조회에서 문제 발생");
 			request.setAttribute("error", "댓글 리스트가 정상적으로 로드되지 않았습니다.");
 		}
-		return "select?songno="+songno;
+		return "redirect:/select?songno="+songno;
 	}
 
 	public String deleteReply(HttpServletRequest request) {

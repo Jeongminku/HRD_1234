@@ -6,27 +6,44 @@ function fn_submit(){
 		fn.songtitle.focus();
 		return false;
 	}
-	songfm.submit();
+	fn.submit();
 }
 
-function fn_repSubmit(){
-	var fn = document.reply;
+function fm_repSubmit(){
+	var fm = document.rep;
 	
-	if(fn.nickname.value ==""){
+	if(fm.userid.value ==""){
 		alert('닉네임을 입력해주세요');
-		fn.nickname.focus();
+		fm.userid.focus();
 		return false;
 	}
 	
-	if(fn.reply.value == ""){
+	if(fm.rep_content.value == ""){
 		alert('댓글 내용이 없습니다');
-		fn.reply.focus();
+		fm.reply.focus();
 		return false;
 		
 	}
-	reply.submit();
+	fm.submit();
 }
 
+/*function fm_repSubmit(){
+	var fm = document.reply;
+	
+	if(fm.nickname.value ==""){
+		alert('닉네임을 입력해주세요');
+		fm.nickname.focus();
+		return false;
+	}
+	
+	if(fm.reply.value == ""){
+		alert('댓글 내용이 없습니다');
+		fm.reply.focus();
+		return false;
+		
+	}
+	fm.submit();
+}*/
 function chkDelete(a, b) {
 	
 	if(confirm("댓글을 삭제하시겠습니까?")){

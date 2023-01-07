@@ -17,10 +17,10 @@
 			<div class="wrap">
 				<table class="songlist">
 					<caption>
-						<h1>노래 리스트</h1>
+						<h1 style="padding: 25px">노래 리스트</h1>
 					</caption>
 				<thead>
-					<tr>
+					<tr style="padding">
 						<th>곡 번호</th>
 						<th>노래제목</th>
 						<th>가 수</th>
@@ -34,8 +34,8 @@
 							<td>${songlist.songtitle}</td>
 							<td>${songlist.singer}</td>
 							<td>
-								<a href="./edit?songno=${songlist.songno}">[수정]</a>
-								<a href="./deleteSong?songno=${songlist.songno}" onclick="songDelete(${songlist.songno}); return false;">[삭제]</a>
+								<a href="./edit?songno=${songlist.songno}" class="edit_list">[수정]</a>
+								<a href="./deleteSong?songno=${songlist.songno}" class="delete_list" onclick="songDelete(${songlist.songno}); return false;">[삭제]</a>
 							</td>
 							
 						</tr>

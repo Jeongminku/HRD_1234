@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<header>TJ 금영 노래방</header>
+	<header>Together & Joy Karaoke</header>
 	<nav>
 		<ul>
 			<li><a href="search">노래 찾기</a></li>

@@ -5,7 +5,6 @@
     <fullyQualifiedTypeName name="DTO.Money"/>
     <fullyQualifiedTypeName name="DAO.VoteDAO"/>
     <fullyQualifiedTypeName name="DTO.Member"/>
-    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
     <fullyQualifiedTypeName name="DTO.Vote"/>
     <fullyQualifiedTypeName name="DTO.Ranking"/>
     <fullyQualifiedTypeName name="DAO.VacDAO"/>
@@ -18,7 +17,6 @@
     <fullyQualifiedTypeName name="DTO.Board"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="DAO.SongDAO"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
     <fullyQualifiedTypeName name="org.apache.commons.beanutils.BeanUtils"/>
@@ -29,4 +27,6 @@
     <fullyQualifiedTypeName name="java.io.UnsupportedEncodingException"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
+    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
 </qualifiedTypeNameHistroy>

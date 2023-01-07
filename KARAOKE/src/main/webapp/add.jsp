@@ -9,17 +9,13 @@
 <link rel="stylesheet" href="./css/style.css" />
 <script type="text/javascript" src="script.js"></script>
 <%@ page import="DTO.*" %>
-<%
-request.setCharacterEncoding("UTF-8");
-ArrayList<Result> showlist = new ArrayList<Result>();
-showlist = (ArrayList<Result>)request.getAttribute("showlist");
-%> 
+
 </head>
 <body>
 	<%@ include file="header.jsp" %>
 	<section>
 		<div class="title">노래 추가하기</div>
-			<div class="wrapper">
+			<div class="wrapper" style="display: flex; flex-direction: column; padding: 10px">
 				<form name=fra action="insert">
 					<table>
 						<tr>
@@ -39,10 +35,11 @@ showlist = (ArrayList<Result>)request.getAttribute("showlist");
 							<td><input type="text" name=yaddress placeholder="유튜브 링크"></input></td>
 						</tr>
 					</table>
-					<button class="btn" type="submit" onclick="fn_submit(); return false;">등록하기</button>
-					<button class="btn" type="reset" onclick="fn_submit(); return false;">RESET</button>
+					<div style="padding:15px">
+						<button class="add_btn" type="button" onclick="fra_submit(); return false;" style="width: 100px; height: 30px; font-size: 15px;">등록하기</button>
+						<input class="add_btn" type="reset" value="초기화" style="width: 100px; height: 30px; font-size: 15px;">
+					</div>
 				</form>
-				
 			</div>
 		
 	</section>

@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="./css/style.css" />
-<script type="text/javascript" src="script.js"></script>
+
 </head>
 <body>
 	<%@ include file="header.jsp" %>
@@ -24,7 +24,7 @@
 			<td> <input type="text" name="userid" placeholder="닉네임"> </td>
 			<td> <input type="text" name="rep_content" placeholder= "댓글 추가..."> </td>
 			<td>등록시간</td>
-			<td> <button class="rep_btn" type="submit" onclick="fn_repSubmit(); return false;">댓글</button> <td>
+			<td> <button class="rep_btn" type="button" onclick="fm_repSubmit();">댓글</button> <td>
 			</tr>
 			
 			<c:forEach var="replylist" items="${replylist}">
@@ -46,6 +46,6 @@
 	</div>
 	</form>
 	<%@ include file="footer.jsp" %>
-
+<script type="text/javascript" src="script.js"></script>
 </body>
 </html>

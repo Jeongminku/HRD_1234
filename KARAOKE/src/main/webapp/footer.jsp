@@ -8,7 +8,7 @@
 </head>
 <body>
 	<footer>
-		Web site Layout DB Connection Page	
+		Copyrightⓒ2023.minku.All rights reserved.
 	</footer>
 </body>
 </html>
