@@ -70,6 +70,13 @@ section {
 	font-size: 20px;
 }
 
+section .title {
+	text-align:center;
+	font-size: 40px;
+	font-weight: 600;
+	margin: 20px;
+}
+
 footer {
 	position: fixed;
 	bottom: 0;
@@ -83,7 +90,7 @@ footer {
 }
 
 table {
-	width: 530px;
+	width: 700px;
 	margin: 0 auto;
 	color: white;
 	font-weight: bolder;
@@ -169,6 +176,10 @@ td input, select {
 	min-width: 500px;
 	border: 1px solid black;
 	margin-left: 36px;
+}
+
+.rep_btn {
+	font-size:20px;
 }
 
 /* 

@@ -14,7 +14,7 @@
 		<div class="title">노래검색</div>
 			<form name = frm action = "searchsong">
 				<div class = "table">
-					<table border=1 style="width:700px">
+					<table style="width:700px">
 						<tr>
 							<th>검색할 노래 제목을 입력 해주세요.</th>
 							<td><input type="text" name="songtitle"></td>

@@ -35,7 +35,7 @@
 							<td><input type="text" name=yaddress placeholder="유튜브 링크"></input></td>
 						</tr>
 					</table>
-					<div style="padding:15px">
+					<div style="padding:15px;text-align: center;">
 						<button class="add_btn" type="button" onclick="fra_submit(); return false;" style="width: 100px; height: 30px; font-size: 15px;">등록하기</button>
 						<input class="add_btn" type="reset" value="초기화" style="width: 100px; height: 30px; font-size: 15px;">
 					</div>

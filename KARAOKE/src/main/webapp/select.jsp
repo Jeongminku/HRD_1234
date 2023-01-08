@@ -12,7 +12,7 @@
 <body>
 	<%@ include file="header.jsp" %>
 	<section>
-		<div style="display: flex; flex-direction: row; justify-content: center;">
+		<div style="display: flex; flex-direction: row; justify-content: center; margin: 100px;">
 			<div>
 			<iframe id="iframeid" width="950" height="450" src="https://www.youtube.com/embed/${song.yaddress}?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 			</div>
