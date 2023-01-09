@@ -48,6 +48,8 @@
 			<button class="btn" type="button" onclick="fn_submit(); return false;">확인</button>
 		</div>
 		</form>
+		
+
 	</section>
 	<%@ include file="footer.jsp" %>
 

@@ -76,7 +76,7 @@ public class SongController extends HttpServlet {
 			break;
 			
 		case "/select":
-			view = select(request);
+			view = select(request,response);
 			break;
 			
 		case "/reply":
@@ -167,11 +167,23 @@ public class SongController extends HttpServlet {
 		return "redirect:/list";
 	}
 	
-	public String select(HttpServletRequest request) {
+	public String select(HttpServletRequest request, HttpServletResponse response) {
 		int songno = Integer.parseInt(request.getParameter("songno"));
 		try {
 			Result s = song.select(songno);
+			String result = song.select_Error(songno);
+			System.out.println(result);
 			request.setAttribute("song", s);
+			request.setAttribute("error", result);
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			if(result.equals("no")) {
+				out.print("<script>");   				
+				out.print("alert('없는 번호입니다!'); location.href='index.jsp';");
+				out.print("</script>");
+				out.flush();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			ctx.log("노래코드로 불러오는 과정에서 문제 발생");

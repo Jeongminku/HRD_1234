@@ -5,7 +5,15 @@ public class Result {
 	String songtitle;
 	String singer;
 	String yaddress;
+	int gubun;
 	
+
+	public int getGubun() {
+		return gubun;
+	}
+	public void setGubun(int gubun) {
+		this.gubun = gubun;
+	}
 	public String getYaddress() {
 		return yaddress;
 	}

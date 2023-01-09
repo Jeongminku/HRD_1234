@@ -94,23 +94,43 @@ public class SongDAO {
 	public Result select(int songno) throws Exception {
 		Connection conn = open();
 		Result s = new Result();
-		
 		String sql = "select songno, title, yaddress, singer from song where songno = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, songno);
 		ResultSet rs = pstmt.executeQuery();
 		
+		
 		try(conn; pstmt; rs;) {
-			while (rs.next()) {
-				s.setSongno(songno);
+			if (rs.next()) {
+				s.setSongno(rs.getInt(1));
 				s.setSongtitle(rs.getString(2));
 				s.setYaddress(rs.getString(3));
 				s.setSinger(rs.getString(4));
 				
+				}
+			
 			}
 			return s;
 		}
+	
+	public String select_Error(int songno) throws Exception {
+		Connection conn = open();
+		String result = "no"; 
+		String sql = "select songno, title, yaddress, singer from song where songno = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, songno);
+		ResultSet rs = pstmt.executeQuery();
+		
+		
+		try(conn; pstmt; rs;) {
+			if (rs.next()) {
+				result = "yes";				
+			}
+		}
+		return result;
 	}
+	
+
 	
 	public int reply(Reply r) throws Exception {
 //		int result = 0;
