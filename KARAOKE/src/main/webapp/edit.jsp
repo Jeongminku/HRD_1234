@@ -35,7 +35,7 @@
 						</tr>
 					</table>
 				</form>
-					<div style="padding:15px">
+					<div style="padding:15px; text-align:center">
 						<button class="edit_btn" type="button" onclick="fra_submit(); return false;">수정완료</button>
 						<button class="edit_btn" type="button" onclick="location.href='/KARAOKE/list'">취소하기</button>
 					</div>

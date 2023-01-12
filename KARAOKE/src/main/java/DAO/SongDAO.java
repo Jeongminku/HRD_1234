@@ -76,20 +76,32 @@ public class SongDAO {
 	}
 	
 	public int insertSong(Result s) throws Exception {
-		System.out.println("DAO insertsong");
 		Connection conn = open();
-		int result =0;
-		String sql = "insert into song (songno, title, singer, yaddress) values (?,?,?,?)";
-		PreparedStatement pstmt = conn.prepareStatement(sql);
-		try(conn; pstmt) {
-			pstmt.setInt(1, s.getSongno());			
-			pstmt.setString(2, s.getSongtitle());			
-			pstmt.setString(3, s.getSinger());			
-			pstmt.setString(4, s.getYaddress());
-			result = pstmt.executeUpdate();
+		int result = 0;
+		String sql1 = "select songno from song where songno = " + s.getSongno();
+		PreparedStatement pstmt1 = conn.prepareStatement(sql1);
+		ResultSet rs = pstmt1.executeQuery();
+		System.out.println(sql1);
+		String sql2 = "insert into song (songno, title, singer, yaddress) values (?,?,?,?)";
+		PreparedStatement pstmt2 = conn.prepareStatement(sql2);
+		try(pstmt1; rs;) {
+			if(rs.next()) {
+				result = 0;
+				System.out.println("pstmt1 rs.next의 result" + result);
+			} else {
+		try(conn; pstmt2;) {
+			pstmt2.setInt(1, s.getSongno());			
+			pstmt2.setString(2, s.getSongtitle());			
+			pstmt2.setString(3, s.getSinger());			
+			pstmt2.setString(4, s.getYaddress());
+			result = pstmt2.executeUpdate();
+			System.out.println("pstmt2 rs.next의 result222" + result);
+				}
+			}
 		}
 		return result;
 	}
+
 	
 	public Result select(int songno) throws Exception {
 		Connection conn = open();
@@ -184,7 +196,7 @@ public class SongDAO {
 			pstmt.setInt(1, commentno);
 		
 			if (pstmt.executeUpdate() != 1) {
-				throw new Exception("삭제된글이 없습니다다다다다다다");
+				throw new Exception("삭제된글이 없습니다");
 			}
 		}
 	}

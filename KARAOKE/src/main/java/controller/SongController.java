@@ -151,8 +151,9 @@ public class SongController extends HttpServlet {
 			if(result == 0 ) {
 				PrintWriter out = response.getWriter();
 				out.print("<script>");
-				out.print("alert('노래가 정상적으로 등록되지 않았습니다!');");
+				out.print("alert('노래가 정상적으로 등록되지 않았습니다! 노래번호를 확인해주세요.'); location.href='list'");
 				out.print("</script>");
+				out.flush();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
