@@ -17,7 +17,7 @@
 			<div class="wrap">
 				<table class="songlist">
 					<caption>
-						<h1 style="padding: 25px">노래 리스트</h1>
+						<h1 class="songlist_title">노래 리스트</h1>
 					</caption>
 				<thead>
 					<tr style="padding">

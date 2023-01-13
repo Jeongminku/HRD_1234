@@ -238,6 +238,19 @@ public class SongDAO {
 		}		
 	}
 	
+
+	
+	public void deleteSongReply(int songno) throws Exception {
+		Connection conn = open();
+		
+		String sql = "delete from songreply where songno=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		
+		try (conn; pstmt) {
+			pstmt.setInt(1, songno);
+			pstmt.executeUpdate();
+			}
+		}
 	public void deleteSong(int songno) throws Exception {
 		Connection conn = open();
 		
@@ -247,8 +260,8 @@ public class SongDAO {
 		try (conn; pstmt) {
 			pstmt.setInt(1, songno);
 			pstmt.executeUpdate();
-			}
 		}
+	}
 }
 	/*
 public ArrayList<Result> songnoList(HttpServletRequest request) throws Exception {

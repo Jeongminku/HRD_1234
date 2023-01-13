@@ -12,7 +12,7 @@
 <body>
 	<%@ include file="header.jsp" %>
 	<section>
-		<div style="display: flex; flex-direction: row; justify-content: center; margin: 100px;">
+		<div style="display: flex; flex-direction: row; justify-content: center; margin: 80px;">
 			<div>
 			<iframe id="iframeid" width="950" height="450" src="https://www.youtube.com/embed/${song.yaddress}?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 			</div>
@@ -24,10 +24,14 @@
 				<tr>
 				<td> <input type="text" name="userid" id="rep_userid" placeholder="닉네임"> </td>
 				<td> <input type="text" name="rep_content" id="rep_content" placeholder= "댓글 추가..."> </td>
-				<th>등록시간</th>
+				<th></th>
 				<td> <button class="rep_btn" type="submit" onclick="fm_repSubmit(); return false;">댓글</button> <td>
 				</tr>
-			
+				<tr>
+				<th class="reply_list">아이디</th>
+				<th class="reply_list">댓글 내용</th>
+				<th class="reply_list">등록 시간</th>
+				</tr>
 			
 				<c:forEach var="replylist" items="${replylist}">
 					<tr>
@@ -42,9 +46,9 @@
 			</form>	
 			</div>
 		</div>
-		<form name=songfm action=select>
+		<form name=songfm action="select">
 		<div style= "display: flex; justify-content: center;">
-			<input class="inputcode" type="text" name="songno" placeholder="노래 코드를 입력해주세요"></input>
+			<input class="inputcode" type="text" name="songno" placeholder="노래 코드를 입력해주세요" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required></input>
 			<button class="btn" type="button" onclick="fn_submit(); return false;">확인</button>
 		</div>
 		</form>

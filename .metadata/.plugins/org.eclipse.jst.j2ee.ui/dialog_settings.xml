@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<item key="J2EE_EXPORT_OVERWRITE" value="false"/>
+	<item key="J2EE_EXPORT_SOURCE" value="true"/>
 	<list key="MRU_RUNTIME_STORE">
 		<item value="Apache Tomcat v9.0"/>
 	</list>
@@ -8,5 +10,10 @@
 		<item value="D:\project\22년 12월 마지막주\221226\board.war"/>
 		<item value="D:\project\JSP\JSP 강의교안\정보처리산업기사 과정형 실기\HRD_5678.war"/>
 		<item value="D:\project\JSP\JSP 강의교안\정보처리산업기사 과정형 실기\HRD_1234.war"/>
+	</list>
+	<list key="J2EE_EXPORT_JST_WEB">
+		<item value="C:\Users\ezen\Desktop\230113 정민구 노래방.war"/>
+		<item value="C:\Users\ezen\Desktop\KARAOKE1.war"/>
+		<item value="C:\Users\ezen\Desktop\KARAOKE.war"/>
 	</list>
 </section>

@@ -104,6 +104,17 @@ table td {
 	margin:10px;
 	color: black;
 	font-weight: 600;
+	font-size: 20px;
+}
+
+table th {
+	color:purple;
+	text-shadow: -1.5px 0px white, 0px 1.5px white, 1.5px 0px white, 0px -1.5px white;
+}
+
+.songlist_title {
+	padding: 25px;
+	color: black;
 }
 
 td input, select {
@@ -178,7 +189,7 @@ td input, select {
 }
 
 .index_div {
-	padding: 100px;
+	padding: 80px;
 }
 
 .inputcode {
@@ -234,3 +245,8 @@ td input, select {
 	background: #633760;
 }
 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="alert"/>
+		<item key="selection" value="songno"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="alert"/>
-			<item value="href"/>
-			<item value="contex"/>
-			<item value="select"/>
-			<item value="sec"/>
-			<item value="table"/>
-			<item value="search"/>
-			<item value="result"/>
-			<item value="insert"/>
-			<item value="add"/>
-			<item value="form"/>
-			<item value="repSubmit"/>
-			<item value="chkForm"/>
-			<item value="reply"/>
-			<item value="write"/>
+			<item value="songno"/>
+			<item value="숫자를"/>
+			<item value="delete"/>
+			<item value="dele"/>
+			<item value="whi"/>
+			<item value="th"/>
+			<item value="h1"/>
+			<item value="reply_list"/>
+			<item value="index"/>
+			<item value="margin"/>
+			<item value="CREATE TABLE SONGREPLY("/>
+			<item value="input"/>
+			<item value="td"/>
+			<item value="edit"/>
+			<item value="eidt"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>
@@ -31,7 +31,7 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item key="DIALOG_X_ORIGIN" value="43"/>
-		<item key="DIALOG_Y_ORIGIN" value="-13"/>
+		<item key="DIALOG_Y_ORIGIN" value="8"/>
 		<item key="DIALOG_WIDTH" value="322"/>
 		<item key="DIALOG_HEIGHT" value="391"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>

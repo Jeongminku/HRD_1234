@@ -1,13 +1,15 @@
 function fn_submit(){
 	var fn = document.songfm;
-	
 	if(fn.songno.value == ""){
 		alert('검색어가 입력되지않았습니다.');
 		fn.songtitle.focus();
 		return false;
 	}
+	
+
 	fn.submit();
 }
+
 
 function fm_repSubmit(){
 	var fm = document.rep;

@@ -265,6 +265,7 @@ public class SongController extends HttpServlet {
 	public String deleteSong(HttpServletRequest request) {
 		int songno = Integer.parseInt(request.getParameter("songno"));
 		try {
+			song.deleteSongReply(songno);
 			song.deleteSong(songno);
 		} catch(Exception e) {
 			e.printStackTrace();
